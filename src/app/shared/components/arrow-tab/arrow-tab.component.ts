@@ -35,13 +35,11 @@ export class ArrowTabComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    console.log("---", this.actives);
   }
 
   changeActive(active: TabActiveInterface) {
     if (this.currentActive != active) {
       this.activeChanged.emit(active)
-      console.log("+++", active);
       this.currentActive = active
       this.cdr.detectChanges()
     }

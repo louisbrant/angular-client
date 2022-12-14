@@ -64,7 +64,6 @@ export class PlayerProfileComponent implements OnInit {
 
   public changeActiveGroup(active: TabActiveInterface) {
     this.h2hshow = this.h2hshow == "" ? "show " : "";
-    console.log(active);
   }
 
 

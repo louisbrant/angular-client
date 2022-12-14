@@ -1,14 +1,59 @@
 <div class="wrap">
   <div class=" mt-4 bg-white table-wrap br20 bgset" *ngIf="showLiveEvents">
     <table class="table my-0 fs-6">
-      <thead class="upcomingthead">
-        <div class="row upcomingdiv">
-          <div class="nonepdlr text-center pt-2 pb-2 col-6 px-4 sidectselbtn">Upcoming Match</div>
-          <div class="nonepdlr text-center pt-2 pb-2 col-5 px-4 sideunselbtn">Live Events</div>
-          <div class="nonepdlr text-center pt-2 pb-2 col-1 px-4 sideunselbtn"></div>
+      <thead class="upcomingthead" *ngIf="defaultactiv=='upcoming';else liveEvent">
+
+        <div class="row upcomingdiv" *ngIf="showupcoming;else showlive">
+          <div class="nonepdlr text-center pt-2 pb-2 col-6 px-4 sidetab sidectselbtn" (click)="switchtab()">Upcoming
+            Match
+          </div>
+          <div class="nonepdlr text-center pt-2 pb-2 col-6 px-4 sidetab sideunselbtn" (click)="switchtab()">Live
+            Events
+          </div>
         </div>
+        <ng-template #showlive>
+          <div class="row upcomingdiv">
+            <div class="nonepdlr text-center pt-2 pb-2 col-6 px-4 sidetab sideunselbtn " (click)="switchtab()">
+              Upcoming
+              Match
+            </div>
+            <div class="nonepdlr text-center pt-2 pb-2 col-6 px-4 sidetab sidectselbtn " (click)="switchtab()">Live
+              Events
+            </div>
+          </div>
+        </ng-template>
       </thead>
-      <tbody>
+      <ng-template #liveEvent>
+        <thead class="upcomingthead">
+          <div class="row upcomingdiv" *ngIf="!showupcoming;else showlive">
+            <div class="nonepdlr text-center pt-2 pb-2 col-6 px-4 sidetab sidectselbtn" (click)="switchtab()">Live
+              Events
+            </div>
+            <div class="nonepdlr text-center pt-2 pb-2 col-6 px-4 sidetab sideunselbtn" (click)="switchtab()">Upcoming
+              Match
+            </div>
+          </div>
+          <ng-template #showlive>
+            <div class="row upcomingdiv">
+              <div class="nonepdlr text-center pt-2 pb-2 col-6 px-4 sidetab sideunselbtn " (click)="switchtab()">Live
+                Events
+              </div>
+              <div class="nonepdlr text-center pt-2 pb-2 col-6 px-4 sidetab sidectselbtn " (click)="switchtab()">
+                Upcoming
+                Match
+              </div>
+            </div>
+          </ng-template>
+        </thead>
+      </ng-template>
+    </table>
+    <table>
+      <tbody *ngIf="showupcoming;else showliveeventtbody">
+        <div class="row upcomingdiv px-3">
+          <div class="nonepdlr text-center pt-2 pb-2 col-6 px-4 sidectselbtn"></div>
+          <div class="nonepdlr text-center pt-2 pb-2 col-5 px-4 sidectselbtn"></div>
+          <div class="nonepdlr text-center pt-2 pb-2 col-1 px-4 sidectselbtn"></div>
+        </div>
         <div class="bg-white mt-1 mt-md-3 border-radius pb-1 text-nowrap"
           *ngIf="upcomingMatches.length; else noMatches">
           <tr *ngFor="let match of upcomingMatches" class="align-middle">
@@ -54,22 +99,33 @@
         <ng-template #noMatches>
           <h5 class="p-2">No upcoming matches!</h5>
         </ng-template>
-        <!-- <tr class="tournament-link p-2" (click)="navigateToTournament(liveEvent.name, liveEvent.date)"
-          *ngFor="let liveEvent of liveEvents; let i = index">
-          <td class="col-1 p-0 pe-2 image-container p-2">
-            <img [src]="liveEvent.image" style="width: 3em"
-              onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'" />
-          </td>
-          <td>
-            <p class="m-0 p-0">{{ liveEvent.name }}</p>
-            <p class="m-0 p-0 text-description">{{ liveEvent.country }}</p>
-          </td>
-          <td>
-            <p class="m-0 p-0">{{ liveEvent.name }}</p>
-            <p class="m-0 p-0 text-description">{{ liveEvent.country }}</p>
-          </td>
-        </tr> -->
       </tbody>
+      <ng-template #showliveeventtbody>
+        <tbody>
+          <tr>
+            <div class="row upcomingdiv px-3">
+              <div class="nonepdlr text-center pt-2 pb-2 col-6 px-4 sidectselbtn"></div>
+              <div class="nonepdlr text-center pt-2 pb-2 col-5 px-4 sidectselbtn"></div>
+              <div class="nonepdlr text-center pt-2 pb-2 col-1 px-4 sidectselbtn"></div>
+            </div>
+          </tr>
+          <tr class="tournament-link p-2" (click)="navigateToTournament(liveEvent.name, liveEvent.date)"
+            *ngFor="let liveEvent of liveEvents; let i = index">
+            <td class="col-1 p-0 pe-2 image-container p-2">
+              <img [src]="liveEvent.image" style="width: 3em"
+                onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'" />
+            </td>
+            <td>
+              <p class="m-0 p-0">{{ liveEvent.name }}</p>
+              <p class="m-0 p-0 text-description">{{ liveEvent.country }}</p>
+            </td>
+            <td>
+              <p class="m-0 p-0">{{ liveEvent.name }}</p>
+              <p class="m-0 p-0 text-description">{{ liveEvent.country }}</p>
+            </td>
+          </tr>
+        </tbody>
+      </ng-template>
     </table>
   </div>
 

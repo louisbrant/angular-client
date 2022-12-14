@@ -111,12 +111,8 @@ export class CalendarComponent implements OnInit {
       let week = 0;
       let previousDate = new Date(year.toString())
       let date = new Date(previousDate);
-      console.log(new Date(previousDate))
-      console.log(date.setDate(date.getDate() + 7));
-      console.log((year), date.getFullYear())
       let i = 0;
       // for (let date = new Date(previousDate); i<53; date.setDate(date.getDate() + 7)) {
-      //   console.log(type, "++++++++++++++++++++++++++", year)
       // }
       for (let date = new Date(previousDate); i < 53; date.setDate(date.getDate() + 7)) {
         i++;
@@ -150,7 +146,6 @@ export class CalendarComponent implements OnInit {
         if (group.tournaments.length) this.matchGrouped.push(group)
         previousDate = new Date(date)
         ++week;
-        console.log("group---------->", group);
       }
     })
   }

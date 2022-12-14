@@ -41,9 +41,6 @@ export class ProfileMatchStatsH2hComponent implements OnInit {
         let center = Math.round(interestingH2hs.length / 2)
         this.leftTable = interestingH2hs!.slice(0, center)
         this.rightTable = interestingH2hs!.slice(center, interestingH2hs.length)
-        console.log(this.leftTable)
-        console.log(this.rightTable)
-        console.log(interestingH2hs)
       })
     })
   }

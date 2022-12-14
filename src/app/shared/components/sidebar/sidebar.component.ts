@@ -31,6 +31,8 @@ export class SidebarComponent implements OnInit {
   @Input() showAtpRanking: boolean = true;
   @Input() showLiveEvents: boolean = true;
   @Input() showInterestingH2h: boolean = true;
+  @Input() defaultactiv: string = '';
+  @Input() showupcoming: boolean = true;
   @Input()
   set activeType(tab: string) {
     this.tab = tab;
@@ -100,5 +102,10 @@ export class SidebarComponent implements OnInit {
       this.router.navigate(['tennis', 'h2h', 'atp', name, name2])
       window.scroll({ top: 0, behavior: 'smooth' })
     }
+  }
+  switchtab() {
+    console.log("Sds");
+    this.showupcoming = !this.showupcoming;
+    console.log(this.showupcoming);
   }
 }

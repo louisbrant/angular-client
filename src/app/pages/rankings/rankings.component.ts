@@ -70,7 +70,6 @@ export class RankingsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log("this.defaultHeader=>", this.defaultBody);
     this.$selectedType.subscribe(type => {
       this.playerStats = []
       this.getRankingFilters(type)
@@ -94,7 +93,6 @@ export class RankingsComponent implements OnInit, AfterViewInit {
   }
 
   public changeActiveGroup(active: TabActiveInterface) {
-    console.log(active);
     this.active = active;
     this.page = 0
     this.selectedGroup = active.active as 'singles' | 'doubles' | 'race' | 'prize' | 'surface';
@@ -178,7 +176,6 @@ export class RankingsComponent implements OnInit, AfterViewInit {
       this.generateCountryFilter(filters.countries)
       this.generateDateFilter(filters.date)
       this.generateSurfaceFilter(filters.surfaces)
-      console.log(this.dateFilters[0].value)
       this.formGroupFilters = new FormGroup({
         date: new FormControl(this.dateFilters[0].value),
         country: new FormControl(this.countryFilters[0].value),
@@ -222,7 +219,6 @@ export class RankingsComponent implements OnInit, AfterViewInit {
   }
 
   nextPage() {
-    console.log(this.formGroupFilters)
     this.page = this.page + 1;
     this.getRanking()
   }

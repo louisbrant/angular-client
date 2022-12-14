@@ -36,7 +36,6 @@ export class TabComponent implements OnInit {
 
   changeActive(active: TabActiveInterface) {
     if (this.currentActive != active) {
-      console.log("===", active);
       this.activeChanged.emit(active)
       this.currentActive = active
       this.cdr.detectChanges()

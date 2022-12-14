@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {SearchInterface} from "../../../shared/interfaces/search.interface";
-import {ProfileService} from "../../profile/services/profile.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { SearchInterface } from "../../../shared/interfaces/search.interface";
+import { ProfileService } from "../../profile/services/profile.service";
 
 @Component({
   selector: 'app-h2h-search-tennis-atp',
@@ -25,7 +25,7 @@ export class H2hSearchTennisAtpComponent implements OnInit {
 
   searchPlayer(player: string, playerOrder: string) {
     if (player?.length > 1) {
-      if(this.searcheSubscription != null) {
+      if (this.searcheSubscription != null) {
         this.searcheSubscription.unsubscribe();
       }
 
@@ -35,9 +35,8 @@ export class H2hSearchTennisAtpComponent implements OnInit {
     }
   }
 
-  selectPlayer(player:any, playerOrder:string) {
+  selectPlayer(player: any, playerOrder: string) {
     playerOrder === 'player 1' ? this.firstPlayer = player : this.secondPlayer = player;
-    console.log('1', this.firstPlayer, '2', this.secondPlayer)
   }
 
   navigateToH2h() {

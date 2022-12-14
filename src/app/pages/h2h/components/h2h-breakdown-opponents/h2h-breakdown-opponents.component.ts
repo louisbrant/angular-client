@@ -128,7 +128,6 @@ export class H2hBreakdownOpponentsComponent implements OnInit {
     }).subscribe(({ firstPlayer, secondPlayer }) => {
       this.PlOneStat = firstPlayer;
       this.PlTwoStat = secondPlayer;
-      console.log('pl1s', firstPlayer, 'pl2s', secondPlayer);
 
       if (this.PlOneStat && this.PlTwoStat) {
         this.headers = [

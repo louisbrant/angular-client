@@ -24,7 +24,6 @@ export class DrawGroupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.groupDraws);
   }
 
   public getGroupedDraws(value: DrawMatchInterface[]): any[] {
@@ -69,7 +68,6 @@ export class DrawGroupComponent implements OnInit {
       draws.push(group)
       draws.push(...group.draws)
     }
-    console.log(draws);
     return draws
   }
 

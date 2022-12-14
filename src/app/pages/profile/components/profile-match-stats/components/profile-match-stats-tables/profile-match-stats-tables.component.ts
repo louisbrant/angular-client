@@ -106,7 +106,6 @@ export class ProfileMatchStatsTablesComponent implements OnInit {
             name: filters.years[i - 1] == undefined ? "" : filters.years[i - 1] + "/" + year,
             value: year,
           }));
-
           this.filtersFormGroup = new FormGroup({
             year: new FormControl(this.yearFilters[0].value),
             level: new FormControl(this.levelFilters[0].value),

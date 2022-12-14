@@ -24,9 +24,6 @@ export class SelectorComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedVal = this.defaultValue || this.options[0].value || ""
-    console.log("this.defaultValue=>", this.defaultValue)
-    console.log("this.formControl=>", this.formControl)
-    console.log(this.type);
     this.select = "showed";
   }
   change() {

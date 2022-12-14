@@ -5,6 +5,8 @@ import { ProfileService } from "src/app/pages/profile/services/profile.service";
 import { TableHeaderInterface } from 'src/app/shared/interfaces/table';
 import { H2HService } from "../../../h2h/h2h.service";
 
+import { FilterInterface } from "src/app/shared/interfaces/filter";
+import { FormControl, FormGroup } from "@angular/forms";
 @Component({
   selector: 'app-profile-performance-breakdown',
   templateUrl: './profile-performance-breakdown.component.html',
@@ -27,7 +29,7 @@ export class ProfilePerformanceBreakdownComponent implements OnInit {
     },
     { name: 'wl' }]
 
-  years: string[] = ['career'];
+  years: string[] = [];
   currentYear: string = '';
   player!: string;
   breakdownFilters = {
@@ -36,6 +38,10 @@ export class ProfilePerformanceBreakdownComponent implements OnInit {
     tournament: '',
     career: ''
   };
+
+
+  public yearFilters: FilterInterface[] = []
+  public formGroupFilters: FormGroup = new FormGroup({});
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -55,7 +61,19 @@ export class ProfilePerformanceBreakdownComponent implements OnInit {
       this.player = params['name'];
       this.profileService.getBreakdown(this.player).subscribe(breakdown => {
         this.years = [...Object.keys(breakdown).reverse()];
-        if (this.years.length) this.currentYear = this.years[1];
+        if (this.years.length) {
+          this.currentYear = this.years[1]
+          this.yearFilters = this.years.map((year, i) => {
+            return {
+              name: this.years[i - 1] == undefined ? "" : this.years[i - 1] + "/" + year,
+              value: year
+            }
+          })
+        };
+
+        this.formGroupFilters = new FormGroup({
+          year: new FormControl(this.yearFilters[1].value),
+        })
         this.breakdownFilters.career = this.currentYear;
         this.h2hService.getBreakDownStats(this.type, this.player, this.breakdownFilters).subscribe(res => {
           breakdown.level = res;
@@ -65,6 +83,7 @@ export class ProfilePerformanceBreakdownComponent implements OnInit {
           this.parseRounds(breakdown)
         })
       });
+
     })
   }
 
@@ -237,5 +256,9 @@ export class ProfilePerformanceBreakdownComponent implements OnInit {
     }
 
 
+  }
+
+  getFormControl(control: string): FormControl {
+    return this.formGroupFilters?.controls[control] as FormControl;
   }
 }

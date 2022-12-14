@@ -60,17 +60,14 @@ export class ProfileMatchesPlayedComponent implements OnInit, OnChanges {
   @Input() type?: string | undefined;
 
   ngOnInit(): void {
-    console.log("===============", this.matchGrouped)
     this.generateWeekFilter()
     this.activatedRoute.params.subscribe(params => {
-      console.log("===============", this.matchGrouped)
       this.profileName = params['name']
       this.ngOnChanges()
     })
   }
 
   ngOnChanges() {
-    console.log("===============", this.matchGrouped)
     if (this.name) {
       this.profileName = this.name;
     }
@@ -83,7 +80,6 @@ export class ProfileMatchesPlayedComponent implements OnInit, OnChanges {
       this.matchGrouped.push(...this.mapMatchesToGroups(matches.singles))
       this.deleteDuplicateGroups()
     });
-    console.log("===============", this.matchGrouped)
   }
 
   private mapMatchesToGroups(matches: DrawMatchInterface[]): GroupMatchesPlayedInterface[] {
@@ -125,44 +121,46 @@ export class ProfileMatchesPlayedComponent implements OnInit, OnChanges {
 
   private getFilters(profileName: string) {
     this.profileService.getProfileFilters(profileName).subscribe(filters => {
-      this.levelFilters = [
-        { name: 'All Levels', value: '' },
-        ...filters.level
-          .map(level => ({ name: level.name, value: level.id }))
-      ]
-      const surfaceFiltersTemp: FilterInterface[] = [{ name: 'All Surfaces', value: '' }]
-      for (let court of filters.courts) {
-        let courtValues = [court.name]
-        if (court.id == 4 || court.id == 10 || court.id == 6) continue
-        if (court.id == 3) {
-          courtValues.push('Carpet');
-          courtValues.push('Acrylic');
+      if (filters.level) {
+        this.levelFilters = [
+          { name: 'All Levels', value: '' },
+          ...filters.level
+            .map(level => ({ name: level.name, value: level.id }))
+        ]
+        const surfaceFiltersTemp: FilterInterface[] = [{ name: 'All Surfaces', value: '' }]
+        for (let court of filters.courts) {
+          let courtValues = [court.name]
+          if (court.id == 4 || court.id == 10 || court.id == 6) continue
+          if (court.id == 3) {
+            courtValues.push('Carpet');
+            courtValues.push('Acrylic');
+          }
+          surfaceFiltersTemp.push({ name: court.name, value: courtValues.join(',') })
         }
-        surfaceFiltersTemp.push({ name: court.name, value: courtValues.join(',') })
-      }
-      this.surfaceFilters = surfaceFiltersTemp
-      this.roundFilters = [
-        { name: 'All Rounds', value: '' },
-        ...filters.rounds
-          .map(round => ({ name: round.name, value: round.name }))
-      ]
-      this.yearFilters = filters.years.map((year, i) => ({ name: filters.years[i - 1] == undefined ? "" : filters.years[i - 1] + "/" + year, value: year }))
+        this.surfaceFilters = surfaceFiltersTemp
+        this.roundFilters = [
+          { name: 'All Rounds', value: '' },
+          ...filters.rounds
+            .map(round => ({ name: round.name, value: round.name }))
+        ]
+        this.yearFilters = filters.years.map((year, i) => ({ name: filters.years[i - 1] == undefined ? "" : filters.years[i - 1] + "/" + year, value: year }))
 
-      this.filtersFormGroup = new FormGroup({
-        level: new FormControl(this.levelFilters[0].value),
-        court: new FormControl(this.surfaceFilters[0].value),
-        round: new FormControl(this.roundFilters[0].value),
-        year: new FormControl(this.yearFilters[0].value),
-        week: new FormControl(this.weekFilters[0].value),
-      })
-      this.fetchH2hMatchesPlayed(this.filtersFormGroup.value)
-      this.filtersFormGroup.valueChanges.subscribe(changes => {
-        if (changes?.year) {
-          this.resetPage()
-          this.matchGrouped = []
-          this.fetchH2hMatchesPlayed(changes);
-        }
-      })
+        this.filtersFormGroup = new FormGroup({
+          level: new FormControl(this.levelFilters[0].value),
+          court: new FormControl(this.surfaceFilters[0].value),
+          round: new FormControl(this.roundFilters[0].value),
+          year: new FormControl(this.yearFilters[0].value),
+          week: new FormControl(this.weekFilters[0].value),
+        })
+        this.fetchH2hMatchesPlayed(this.filtersFormGroup.value)
+        this.filtersFormGroup.valueChanges.subscribe(changes => {
+          if (changes?.year) {
+            this.resetPage()
+            this.matchGrouped = []
+            this.fetchH2hMatchesPlayed(changes);
+          }
+        })
+      }
     })
   }
 
@@ -171,9 +169,7 @@ export class ProfileMatchesPlayedComponent implements OnInit, OnChanges {
     this.subs = new Subscription();
     this.subs.add(
       this.profileService.getMatchesPlayed(this.profileName, changes, this.currentPage, this.limit).subscribe(matches => {
-        console.log("===============", this.matchGrouped)
         this.matchGrouped = this.mapMatchesToGroups(matches.singles)
-        console.log("===============", this.matchGrouped)
         this.matchesCount = matches.singlesCount;
       })
     )
@@ -181,7 +177,6 @@ export class ProfileMatchesPlayedComponent implements OnInit, OnChanges {
 
   private deleteDuplicateGroups() {
 
-    console.log("===============", this.matchGrouped)
     const names = new Set()
     for (let match of this.matchGrouped) {
       if (match?.group) {

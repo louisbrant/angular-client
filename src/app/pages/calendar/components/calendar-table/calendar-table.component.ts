@@ -15,7 +15,6 @@ export class CalendarTableComponent implements OnInit {
   constructor(private readonly router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.matches);
   }
 
   @Input() type: string | undefined;
