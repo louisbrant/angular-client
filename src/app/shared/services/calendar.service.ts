@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {NewGameInterface} from "src/app/pages/calendar/interfaces/calendar-tournament";
-import {CalendarFilterResponseInterface} from "../../pages/calendar/calendar.component";
-import {Observable} from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { NewGameInterface } from "src/app/pages/calendar/interfaces/calendar-tournament";
+import { CalendarFilterResponseInterface } from "../../pages/calendar/calendar.component";
+import { Observable } from "rxjs";
 
 
 export interface CalendarResponseInterface {
@@ -32,7 +32,7 @@ export class CalendarService {
     if (surfaces) params.surfaces = surfaces
     if (search) params.search = search
 
-    return this.http.get<CalendarResponseInterface[]>(`tennis/api2/calendar/${type}/${year}`, {params})
+    return this.http.get<CalendarResponseInterface[]>(`http://51.250.11.98/tennis/api2/calendar/${type}/${year}`, { params })
   }
 
   public getCalendarFilters(type: string) {

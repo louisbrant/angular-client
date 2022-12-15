@@ -18,6 +18,11 @@ export class SportsmanComponent implements OnInit {
       this.isUnknown = true;
       return;
     }
+    if (name == null) {
+      this.fullnameFirstPerson = 'TBD';
+      this.isUnknown = true;
+      return;
+    }
     this.isUnknown = false;
     let persons = name.split('/');
     this.fullnameFirstPerson = persons[0];

@@ -74,8 +74,13 @@ tr:last-child>th {
   padding-right: 0% !important;
 }
 
+.br10 {
+  border-radius: 10px !important;
+}
+
+
 .br20 {
-  border-radius: 10px;
+  border-radius: 20px !important;
 }
 
 .sideunselbtn {
@@ -108,3 +113,42 @@ tr:last-child>th {
 // .bgset {
 //   background: #e5e5e5 !important;
 // }
+
+
+.eventname {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.eventcountry {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.statediv {
+  font-size: 15px;
+}
+
+.statsimg {
+  height: 38%;
+  margin-top: 0.3rem;
+}
+
+.interestendtext {
+  color: #4C535F;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.greencolor {
+  color: #6DC47F;
+}

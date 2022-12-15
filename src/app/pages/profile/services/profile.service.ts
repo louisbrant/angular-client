@@ -23,7 +23,8 @@ export class ProfileService {
   }
 
   public getInformation(name: string): Observable<ProfileInformationInterface> {
-    return this.http.get<ProfileInformationInterface>(`/tennis/api2/profile/${name}`)
+    const data = this.http.get<ProfileInformationInterface>(`/tennis/api2/profile/${name}`)
+    return data;
   }
 
   public getStatistics(name: string): Observable<ProfileStatisticInterface> {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, of, ReplaySubject} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {YearInterface} from "src/app/shared/interfaces/year";
+import { BehaviorSubject, Observable, of, ReplaySubject } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { YearInterface } from "src/app/shared/interfaces/year";
 
 @Injectable({
   providedIn: 'root'

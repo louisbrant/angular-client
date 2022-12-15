@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {RankingFilter} from "src/app/pages/rankings/interfaces/ranking-filter";
-import {RankingInterface} from "src/app/shared/interfaces/ranking";
+import { Observable, of } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { RankingFilter } from "src/app/pages/rankings/interfaces/ranking-filter";
+import { RankingInterface } from "src/app/shared/interfaces/ranking";
 
 @Injectable({
   providedIn: 'root'

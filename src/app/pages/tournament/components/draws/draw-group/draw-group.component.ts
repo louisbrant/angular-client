@@ -14,6 +14,7 @@ export class DrawGroupComponent implements OnInit {
 
   @Input() set draws(value: DrawMatchInterface[]) {
     this.groupDraws = this.getGroupedDraws(value)
+    console.log(this.groupDraws)
   };
   groupDraws: (DrawMatchInterface | { group: string })[] | any = [];
 

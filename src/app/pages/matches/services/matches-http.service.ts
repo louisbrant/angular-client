@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {MatchVictory} from "src/app/shared/interfaces/match-victory";
-import {PastChampionInterface, PastChampionsResponseInterface} from "src/app/shared/interfaces/past-champions";
-import {TournamentInterface} from "src/app/shared/interfaces/tournament";
+import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { MatchVictory } from "src/app/shared/interfaces/match-victory";
+import { PastChampionInterface, PastChampionsResponseInterface } from "src/app/shared/interfaces/past-champions";
+import { TournamentInterface } from "src/app/shared/interfaces/tournament";
 
 @Injectable({
   providedIn: 'root'

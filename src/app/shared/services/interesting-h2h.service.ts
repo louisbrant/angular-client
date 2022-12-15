@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {PlayerInterface} from 'src/app/shared/interfaces/player';
+import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { PlayerInterface } from 'src/app/shared/interfaces/player';
 
 export interface InterestingH2hInterface {
   player1: PlayerInterface;
